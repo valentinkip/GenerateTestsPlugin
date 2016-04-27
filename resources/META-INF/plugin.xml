@@ -15,6 +15,7 @@
       analyzes changes made to the source files and detects tests that have been added.
       It shows a popup with suggestion to run them.<br>
       Currently only JUnit tests are supported.
+      The project is available on GitHub at https://github.com/valentinkip/GenerateTestsPlugin.
     ]]></description>
 
   <idea-version since-build="141.0"/>
