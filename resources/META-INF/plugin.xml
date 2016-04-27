@@ -1,14 +1,14 @@
 <idea-plugin version="2">
-  <id>GenerateTests</id>
-  <name>Generate Tests</name>
-  <version>1.0</version>
-  <vendor email="valentin@jetbrains.com" url="http://www.jetbrains.com">JetBrains</vendor>
+    <id>GenerateTests</id>
+    <name>Generate Tests</name>
+    <version>1.0</version>
+    <vendor email="valentin@jetbrains.com" url="http://www.jetbrains.com">JetBrains</vendor>
 
-  <idea-version since-build="143"/>
+    <idea-version since-build="143"/>
 
-  <depends>JUnit</depends>
+    <depends>JUnit</depends>
 
-  <description><![CDATA[
+    <description><![CDATA[
       Helper plugin for working with generated tests.<br>
       Needs a run configuration named "Generate Tests" which updates source files with generated tests.
       The plugin adds a toolbar button to run this run configuration and when the tests are generated it
@@ -18,12 +18,12 @@
       The project is available on GitHub at https://github.com/valentinkip/GenerateTestsPlugin.
     ]]></description>
 
-  <idea-version since-build="141.0"/>
+    <idea-version since-build="141.0"/>
 
-  <actions>
-    <action id="GenerateTests" class="generateTestsPlugin.GenerateTestsActions" icon="/icons/GenerateTests.png">
-      <add-to-group group-id="ToolbarMakeGroup" anchor="before" relative-to-action="CompileDirty"/>
-    </action>
-  </actions>
+    <actions>
+        <action id="GenerateTests" class="generateTestsPlugin.GenerateTestsActions" icon="/icons/GenerateTests.png">
+            <add-to-group group-id="ToolbarMakeGroup" anchor="before" relative-to-action="CompileDirty"/>
+        </action>
+    </actions>
 
 </idea-plugin>
