@@ -10,9 +10,9 @@
 
     <description><![CDATA[
       Helper plugin for working with generated tests.<br>
-      Needs a run configuration named "Generate Tests" which updates source files with generated tests.
-      The plugin adds a toolbar button to run this run configuration and when the tests are generated it
-      analyzes changes made to the source files and detects tests that have been added.
+      Needs a run configuration named "Generate Tests" which updates source files with generated tests.<br>
+      The plugin adds a toolbar button to run this run configuration (also available with Control-Shift-G)
+      and when the tests are generated it analyzes changes made to the source files and detects tests that have been added.
       It shows a popup with suggestion to run them.<br>
       Currently only JUnit tests are supported.
       The project is available on GitHub at https://github.com/valentinkip/GenerateTestsPlugin.
@@ -21,8 +21,9 @@
     <idea-version since-build="141.0"/>
 
     <actions>
-        <action id="GenerateTests" class="generateTestsPlugin.GenerateTestsActions" icon="/icons/GenerateTests.png">
+        <action id="GenerateTests" class="generateTestsPlugin.GenerateTestsActions" text="Generate Tests" icon="/icons/GenerateTests.png">
             <add-to-group group-id="ToolbarMakeGroup" anchor="before" relative-to-action="CompileDirty"/>
+            <keyboard-shortcut first-keystroke="control shift G" keymap="$default"/>
         </action>
     </actions>
 
