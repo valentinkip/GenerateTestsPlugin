@@ -260,7 +260,7 @@ class GenerateTestsActions : DumbAwareAction() {
                             linkActions[linkId](notification)
                         }
                     })
-            Notifications.Bus.notify(notification, null)
+            Notifications.Bus.notify(notification, project)
         }
 
         private fun buildPresentation(method: PsiMethod): String {
@@ -314,8 +314,7 @@ class GenerateTestsActions : DumbAwareAction() {
             val methodsByName = psiMethods.groupBy { it.name }
             val configurations = ArrayList<RunConfiguration>(methodsByName.size)
             for (sameNamePsiMethods in methodsByName.values) {
-                val configurationFactory = JUnitConfigurationType.getInstance().configurationFactories.single()
-                val configuration = JUnitConfiguration("", project, configurationFactory).apply {
+                val configuration = createTemplateConfiguration().apply {
                     bePatternConfiguration(sameNamePsiMethods.map { it.containingClass }, sameNamePsiMethods.first())
                 }
                 configurations.add(configuration)
@@ -324,17 +323,21 @@ class GenerateTestsActions : DumbAwareAction() {
         }
 
         private fun buildTestConfiguration(psiMethod: PsiMethod): JUnitConfiguration {
-            val configurationFactory = JUnitConfigurationType.getInstance().configurationFactories.single()
-            return JUnitConfiguration("", project, configurationFactory).apply {
+            return createTemplateConfiguration().apply {
                 beMethodConfiguration(PsiLocation.fromPsiElement(psiMethod))
             }
         }
 
         private fun buildTestConfiguration(psiClass: PsiClass): JUnitConfiguration {
-            val configurationFactory = JUnitConfigurationType.getInstance().configurationFactories.single()
-            return JUnitConfiguration("", project, configurationFactory).apply {
+            return createTemplateConfiguration().apply {
                 beClassConfiguration(psiClass)
             }
+        }
+
+        private fun createTemplateConfiguration(): JUnitConfiguration {
+            val configurationFactory = JUnitConfigurationType.getInstance().configurationFactories.single()
+            val runnerAndConfigurationSettings = RunManager.getInstance(project).createRunConfiguration("", configurationFactory)
+            return runnerAndConfigurationSettings.configuration as JUnitConfiguration
         }
 
         private fun executeConfiguration(configuration: RunConfiguration, executionId: Long? = null, callback: ProgramRunner.Callback? = null): Long {

@@ -1,7 +1,7 @@
 <idea-plugin version="2">
     <id>GenerateTests</id>
     <name>Generate Tests</name>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <vendor email="valentin@jetbrains.com" url="http://www.jetbrains.com">JetBrains</vendor>
 
     <idea-version since-build="143"/>
